@@ -33,6 +33,5 @@ public class Problem3_2 {
         } catch (NumberFormatException e) {
             System.out.println("年齢が正しくありません。");
         }
-
     }
 }
