@@ -10,9 +10,9 @@ package chapter03.problem;
  */
 public class Problem3_1 {
     public static void main(String[] arg){
-        int speedKms = 30;
-        int daySecond = 24 * 60 * 60;
-        int way = speedKms * daySecond;
+        long speedKms = 300000;
+        long daySecond = 24 * 60 * 60;
+        long way = speedKms * daySecond;
         System.out.println("光は1日に " + way + " キロメートル進む。");
     }
 }

@@ -4,13 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * 問題3-2
+ * 2人の年齢を入力すると、その2人の平均年齢を表示するプログラムを作成せよ。
+ *
+ * @param args
+ */
 public class Problem3_2 {
-    /**
-     * 問題3-2
-     * 2人の年齢を入力すると、その2人の平均年齢を表示するプログラムを作成せよ。
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {

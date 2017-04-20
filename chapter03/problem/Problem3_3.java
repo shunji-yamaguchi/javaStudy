@@ -13,15 +13,12 @@ import java.io.InputStreamReader;
  */
 public class Problem3_3 {
     public static void main(String[] arg){
-        System.out.println("文字列を入力してください。");
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
+            System.out.println("文字列を入力してください。");
             String line = reader.readLine();
-
-            for(int i = 0; i < line.length(); i++){
-                System.out.println("\'" + line.charAt(i) + "\' の文字コードは "
-                        + (int)line.charAt(i) + "です。");
+            for (int i = 0; i < line.length(); i++) {
+                System.out.println("\'" + line.charAt(i) + "\' の文字コードは 0x" + Integer.toHexString((int)line.charAt(i)) + "です。");
             }
         } catch (IOException e) {
             System.out.println(e);
