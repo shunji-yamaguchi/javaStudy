@@ -3,6 +3,7 @@ package chapter03.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 public class Kuku {
     /** 表示する問題の個数 */
@@ -43,9 +44,15 @@ public class Kuku {
      * 正答、誤答の別を表示する
      * 正答の場合はtrueを返す
      */
-    public static boolean showQuestion(int questno){
+    public static boolean showQuestion(int questno) {
+        /*
         int x = (int)(Math.random() * 9) + 1;
         int y = (int)(Math.random() * 9) + 1;
+        */
+        Random r = new Random();
+        int x = r.nextInt(9) + 1;
+        int y = r.nextInt(9) + 1;
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.println("[第" + questno + "問]  " + x + " × " + y + " = ?");

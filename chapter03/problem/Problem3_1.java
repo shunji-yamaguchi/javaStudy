@@ -9,7 +9,7 @@ package chapter03.problem;
  *
  */
 public class Problem3_1 {
-    public static void main(String[] arg){
+    public static void main(String[] arg) {
         long speedKms = 300000;
         long daySecond = 24 * 60 * 60;
         long way = speedKms * daySecond;
