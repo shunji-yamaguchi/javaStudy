@@ -19,8 +19,7 @@ public class Problem3_3 {
             String line = reader.readLine();
 
             for (int i = 0; i < line.length(); i++) {
-                char target;
-                target = line.charAt(i);
+                char target = line.charAt(i);
                 System.out.println("\'" + target + "\' の文字コードは 0x" + Integer.toHexString((int)target) + "です。");
             }
         } catch (IOException e) {
