@@ -18,8 +18,8 @@ public class Problem3_3 {
             System.out.println("文字列を入力してください。");
             String line = reader.readLine();
 
-            char target;
             for (int i = 0; i < line.length(); i++) {
+                char target;
                 target = line.charAt(i);
                 System.out.println("\'" + target + "\' の文字コードは 0x" + Integer.toHexString((int)target) + "です。");
             }
