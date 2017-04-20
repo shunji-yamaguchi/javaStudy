@@ -25,17 +25,19 @@ public class Problem4_3 {
             String line = reader.readLine();
             int time = Integer.parseInt(line);
 
+            String greeting;
             if (0 <= time && time <= 11) {
-                System.out.println("おはようございます");
+                greeting = "おはようございます";
             } else if (time == 12) {
-                System.out.println("お昼です");
+                greeting = "お昼です";
             } else if (13 <= time && time <= 18) {
-                System.out.println("こんにちは");
+                greeting = "こんにちは";
             } else if (19 <= time && time <= 24) {
-                System.out.println("こんばんは");
+                greeting = "こんばんは";
             } else {
-                System.out.println("時間の範囲を超えています");
+                greeting = "時間の範囲を超えています";
             }
+            System.out.println(greeting);
         } catch (IOException e) {
             System.out.println(e);
         } catch (NumberFormatException e) {
