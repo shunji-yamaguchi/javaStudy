@@ -14,6 +14,12 @@ public class Drink2 {
             System.out.println("c どちらでもない");
             System.out.println("a,b,cのどれかを選んでください。");
             String line = reader.readLine();
+
+            // 追加
+            if (line.length() == 0) {
+               line = "c" ;
+            }
+
             char c = line.charAt(0);
             switch (c) {
             case 'a':
