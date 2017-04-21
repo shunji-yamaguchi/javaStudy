@@ -19,8 +19,8 @@ package chapter06.problem;
 public class Problem6_4 {
     public static void main(String[] arg) {
         for (int i = 1; i <= 9; i++) {
-            for (int k = 1; k <= 9; k++) {
-                System.out.print(i + "*" + k + "=" + (i * k) + ", ");
+            for (int j = 1; j <= 9; j++) {
+                System.out.print(i + "*" + j + "=" + (i * j) + ", ");
             }
             System.out.println();
         }

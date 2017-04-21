@@ -22,7 +22,7 @@ public class Problem6_2 {
     public static void main(String[] arg) {
         for (int i = 0; i < 10; i++) {
             System.out.print(i + ":");
-            for (int k = 0; k < i * i; k++) {
+            for (int j = 0; j < Math.pow(i, 2); j++) {
                 System.out.print("*");
             }
             System.out.println();
