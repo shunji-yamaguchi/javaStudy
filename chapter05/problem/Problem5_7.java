@@ -47,14 +47,15 @@ public class Problem5_7 {
                 day = "土曜日";
                 break;
             default:
-                day = "0~6の範囲で入力してください";
-                break;
+                throw new IllegalArgumentException();
             }
             System.out.println(day);
         } catch (IOException e) {
             System.out.println(e);
         } catch (NumberFormatException e) {
             System.out.println("数字を入力してください");
+        } catch (IllegalArgumentException e) {
+            System.out.println("0~6の範囲で入力してください");
         }
     }
 }
