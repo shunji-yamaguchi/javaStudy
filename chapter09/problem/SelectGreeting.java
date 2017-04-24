@@ -1,0 +1,57 @@
+package chapter09.problem;
+
+/**
+ * 問題9-6
+   public static void main(String[] args) {
+       String[] message ???
+
+       ???
+
+       if (args.length != 1) {
+           System.out.println("使い方：java SelectGreeting 番号");
+           System.exit(0);
+       }
+       int num = Integer.parseInt( ??? );
+       if (0 <= num && num < message.length) {
+           System.out.println(message[num]);
+       } else {
+           System.out.println("番号は0~" + ??? + "の範囲で指定してください。");
+       }
+   }
+ *
+ * 以上のプログラムの???部分を完成させ、以下のような実行結果になるプログラムを作成せよ。
+ *
+   java select Greenting 0
+   おはよう!
+   java select Greenting 1
+   こんにちは!
+   java select Greenting 2
+   こんばんは!
+   java select Greenting 3
+   番号は0~2の範囲で指定してください。
+   java select Greenting -100
+   番号は0~2の範囲で指定してください。
+ *
+ * @author shunji.yamaguchi
+ *
+ */
+public class SelectGreeting {
+    public static void main(String[] args) {
+        String[] message = new String[3];
+        message[0] = "おはよう！";
+        message[1] = "こんにちは！";
+        message[2] = "こんばんは！";
+
+        if (args.length != 1) {
+            System.out.println("使い方：java SelectGreeting 番号");
+            System.exit(0);
+        }
+
+        int num = Integer.parseInt(args[0]);
+        if (0 <= num && num < message.length) {
+            System.out.println(message[num]);
+        } else {
+            System.out.println("番号は0~" + message.length + "の範囲で指定してください。");
+        }
+    }
+}
