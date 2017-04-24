@@ -18,13 +18,12 @@ package chapter07.problem;
 public class Problem7_2 {
     public static void main(String[] args) {
         int i = 0;
-        int j = 0;
         while (i < 10) {
+            int j = 0;
             while (j < i * i) {
                 System.out.print("*");
                 j++;
             }
-            j = 0;
             System.out.println();
             i++;
         }

@@ -35,28 +35,32 @@ import java.io.InputStreamReader;
  */
 public class MakeHtml {
     public static void main(String[] args) {
-        System.out.println("<!DOCTYPE html>\n<html>\n<head>\n<title>My Page</title>\n</head>\n<body>");
+        System.out.println("<!DOCTYPE html>");
+        System.out.println("<html>");
+        System.out.println("<head>");
+        System.out.println("<title>My Page</title>");
+        System.out.println("</head>");
+        System.out.println("<body>");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             String line;
             while ((line = reader.readLine()) != null) {
-                String tagS;
-                String tagE;
+                String tag;
                 if (line.startsWith("■")) {
-                    tagS = "<h1>";
-                    tagE = "</h1>";
+                    line = line.substring(1);
+                    tag = "h1";
                 } else if (line.startsWith("●")) {
-                    tagS = "<h2>";
-                    tagE = "</h2>";
+                    line = line.substring(1);
+                    tag = "h2";
                 } else {
-                    tagS = "<p>";
-                    tagE = "</p>";
+                    tag = "p";
                 }
-                System.out.println(tagS + line + tagE);
+                System.out.println("<" +  tag + ">" + line + "</" + tag + ">");
             }
 
-            System.out.println("</body>\n</html>");
+            System.out.println("</body>");
+            System.out.println("</html>");
         } catch (IOException e) {
             System.out.println(e);
         }
