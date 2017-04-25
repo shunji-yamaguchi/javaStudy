@@ -21,15 +21,15 @@ package chapter09.problem;
  *
  * 以上のプログラムの???部分を完成させ、以下のような実行結果になるプログラムを作成せよ。
  *
-   java select Greenting 0
+   java chapter09.problem.SelectGreenting 0
    おはよう!
-   java select Greenting 1
+   java chapter09.problem.SelectGreenting 1
    こんにちは!
-   java select Greenting 2
+   java chapter09.problem.SelectGreenting 2
    こんばんは!
-   java select Greenting 3
+   java chapter09.problem.SelectGreenting 3
    番号は0~2の範囲で指定してください。
-   java select Greenting -100
+   java chapter09.problem.SelectGreenting -100
    番号は0~2の範囲で指定してください。
  *
  * @author shunji.yamaguchi
@@ -43,7 +43,7 @@ public class SelectGreeting {
         message[2] = "こんばんは！";
 
         if (args.length != 1) {
-            System.out.println("使い方：java SelectGreeting 番号");
+            System.out.println("使い方：java chapter09.problem.SelectGreeting 番号");
             System.exit(0);
         }
 
