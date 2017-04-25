@@ -51,12 +51,13 @@ public class Student {
 
     @Override
     public String toString() {
-        String s = "[" + name;
+        StringBuilder sb = new StringBuilder();
+        sb.append("[").append(name);
         for (int i = 0; i < tens.length; i++) {
-            s += "," + tens[i];
+            sb.append(",").append(tens[i]);
         }
-        s += "]";
-        return s;
+        sb.append("]");
+        return sb.toString();
     }
 
     public int total() {
