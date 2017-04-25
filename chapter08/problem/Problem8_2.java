@@ -18,7 +18,6 @@ package chapter08.problem;
    ****
    *
 
-
    *
    ****
    *********
@@ -35,9 +34,6 @@ public class Problem8_2 {
     public static void main(String[] args) {
         for (int i = -8; i <= 8; i++) {
             printGraph((int)Math.pow(i, 2));
-            if (i == 0) {
-                printGraph(0);
-            }
         }
     }
 
