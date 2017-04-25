@@ -38,13 +38,15 @@ public class SortData {
             System.out.print(data[i] + " ");
         }
         System.out.println();
+
+        // バブルソート
         for (int i = 0; i < data.length; i++) {
             for (int j = i + 1; j < data.length; j++) {
                 if (data[i] > data[j]) {
                     // 交換
-                    int keep = data[i];
+                    int temp = data[i];
                     data[i] = data[j];
-                    data[j] = keep;
+                    data[j] = temp;
                 }
             }
         }
