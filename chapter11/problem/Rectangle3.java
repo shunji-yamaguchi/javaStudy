@@ -63,29 +63,22 @@ public class Rectangle3 {
     }
 
     Rectangle3 intersect(Rectangle3 r) {
-        int[] arg = new int[4]; // 返すRectangleへの引数を格納、{x, y, width, height}
-
-        /* xとwidthを求める */
         int thisRightX = this.x + this.width;
-        int rRightX = r.x + r.width;
-        if (this.x <= rRightX && r.x <= thisRightX) {
-            arg[0] = Math.max(r.x, this.x);
-            arg[2] = Math.min(rRightX, thisRightX) - arg[0];
-        } else {
-            return null;
-        }
-
-        /* yとheightを求める */
         int thisUnderY = this.y + this.height;
+        int rRightX = r.x + r.width;
         int rUnderY = r.y + r.height;
-        if (this.y <= rUnderY && r.y <= thisUnderY) {
-            arg[1] = Math.max(r.y, this.y);
-            arg[3] = Math.min(rUnderY, thisUnderY) - arg[1];
-        } else {
+
+        if (this.x > rRightX || r.x > thisRightX && this.y > rUnderY || r.y > thisUnderY) {
             return null;
         }
 
-        return new Rectangle3(arg[0], arg[1], arg[2], arg[3]);
+        int argX = Math.max(r.x, this.x);
+        int argWidth = Math.min(rRightX, thisRightX) - argX;
+
+        int argY = Math.max(r.y, this.y);
+        int argHeight = Math.min(rUnderY, thisUnderY) - argY;
+
+        return new Rectangle3(argX, argY, argWidth, argHeight);
     }
 
     ///* テスト
