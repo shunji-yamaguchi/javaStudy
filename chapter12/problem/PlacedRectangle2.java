@@ -16,10 +16,12 @@ public class PlacedRectangle2 {
     PlacedRectangle2() {
         this(0, 0);
     }
+
     PlacedRectangle2(int x, int y) {
         setLocation(x, y);
         rect = new Rectangle();
     }
+
     PlacedRectangle2(int x, int y, int width, int height) {
         setLocation(x, y);
         rect = new Rectangle(width, height);
@@ -32,7 +34,7 @@ public class PlacedRectangle2 {
 
     @Override
     public String toString() {
-        return "[（" + x + ", " +  y +  "）" + rect + "]";
+        return "[（" + x + ", " + y + "）" + rect + "]";
     }
 
     /* テスト

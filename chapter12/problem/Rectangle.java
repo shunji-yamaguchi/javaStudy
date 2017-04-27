@@ -11,8 +11,9 @@ public class Rectangle {
     int height;
 
     Rectangle() {
-        setSize(0 ,0);
+        setSize(0, 0);
     }
+
     Rectangle(int width, int height) {
         setSize(width, height);
     }

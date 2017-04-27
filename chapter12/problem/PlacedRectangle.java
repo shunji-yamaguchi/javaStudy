@@ -23,9 +23,11 @@ public class PlacedRectangle extends Rectangle {
     PlacedRectangle() {
         this(0, 0);
     }
+
     PlacedRectangle(int x, int y) {
         setLocation(x, y);
     }
+
     PlacedRectangle(int x, int y, int width, int height) {
         super(width, height);
         setLocation(x, y);
@@ -38,7 +40,7 @@ public class PlacedRectangle extends Rectangle {
 
     @Override
     public String toString() {
-        return "[（" + x + ", " +  y +  "）" + super.toString() + "]";
+        return "[（" + x + ", " + y + "）" + super.toString() + "]";
     }
 
     /* テスト
