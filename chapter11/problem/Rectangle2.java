@@ -48,15 +48,8 @@ public class Rectangle2 {
     }
 
     void setSize(int w, int h) {
-        if (w < 0) {
-            w = 0;
-        }
-        if (h < 0) {
-            h = 0;
-        }
-
-        width = w;
-        height = h;
+        width = w < 0 ? 0 : w;
+        height = h < 0 ? 0 : h;
     }
 
     int getArea() {

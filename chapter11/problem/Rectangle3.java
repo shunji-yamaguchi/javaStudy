@@ -63,25 +63,25 @@ public class Rectangle3 {
     }
 
     Rectangle3 intersect(Rectangle3 r) {
-        int thisRightX = this.x + this.width;
-        int thisUnderY = this.y + this.height;
-        int rRightX = r.x + r.width;
-        int rUnderY = r.y + r.height;
+        int thisRight = this.x + this.width;
+        int thisBottom = this.y + this.height;
+        int rRight = r.x + r.width;
+        int rBottom = r.y + r.height;
 
-        if (this.x > rRightX || r.x > thisRightX && this.y > rUnderY || r.y > thisUnderY) {
+        if (this.x > rRight || r.x > thisRight || this.y > rBottom || r.y > thisBottom) {
             return null;
         }
 
         int argX = Math.max(r.x, this.x);
-        int argWidth = Math.min(rRightX, thisRightX) - argX;
+        int argWidth = Math.min(rRight, thisRight) - argX;
 
         int argY = Math.max(r.y, this.y);
-        int argHeight = Math.min(rUnderY, thisUnderY) - argY;
+        int argHeight = Math.min(rBottom, thisBottom) - argY;
 
         return new Rectangle3(argX, argY, argWidth, argHeight);
     }
 
-    ///* テスト
+    /* テスト
     public static void main(String[] args) {
         Rectangle3 rect1 = new Rectangle3(0, 0, 10, 10);
 
@@ -123,6 +123,14 @@ public class Rectangle3 {
         rect2.setLocation(-1, 9);
         System.out.println("左下" + rect2.intersect(rect1));
         rect2.setLocation(-3, -3);
+        System.out.println(rect2.intersect(rect1));
+        rect2.setLocation(5, 11);
+        System.out.println(rect2.intersect(rect1));
+        rect2.setLocation(11, 5);
+        System.out.println(rect2.intersect(rect1));
+        rect2.setLocation(-5, 5);
+        System.out.println(rect2.intersect(rect1));
+        rect2.setLocation(5, -5);
         System.out.println(rect2.intersect(rect1));
     }
     //*/
