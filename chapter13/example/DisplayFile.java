@@ -9,16 +9,15 @@ public class DisplayFile {
     public static void main(String[] args) {
         for (String filename : args) {
             System.out.println("ファイル名" + filename + "====");
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(filename));
+            try (BufferedReader reader = new BufferedReader(new FileReader(filename));) {
                 while (true) {
                     String line = reader.readLine();
                     if (line == null) {
                         break;
                     }
-                    System.out.println("line");
+                    System.out.println(line);
                 }
-                reader.close(); // JavaSE7からtry-with-resource文を使うと自動で呼び出される
+                // JavaSE7からtry-with-resource文を使うと自動でreader.close();が呼び出される
             } catch (FileNotFoundException e) {
                 System.out.println("ファイルが見つかりません;" + e);
             } catch (IOException e) {
