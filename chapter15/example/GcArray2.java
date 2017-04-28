@@ -1,9 +1,10 @@
 package chapter15.example;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class GcArray2 {
-    static ArrayList<int[]> list = new ArrayList<int[]>();
+    static ArrayList<WeakReference<int[]>> list = new ArrayList<WeakReference<int[]>>();
 
     public static void main(String[] args) {
         while (true) {
@@ -11,8 +12,14 @@ public class GcArray2 {
             for (int i = 0; i < a.length; i++) {
                 a[i] = i;
             }
-            list.add(a);
-            System.out.println("残りメモリ = " + Runtime.getRuntime().freeMemory());
+            list.add(new WeakReference<int[]>(a));
+            System.out.println("残りメモリ = " + Runtime.getRuntime().freeMemory() + " 配列lsit = " + list.size());
+
+            for (int i = list.size() - 1; i >= 0; i--) {
+                if (list.get(i).get() == null) {
+                    list.remove(i);
+                }
+            }
         }
     }
 }
