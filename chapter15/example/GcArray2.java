@@ -15,11 +15,7 @@ public class GcArray2 {
             list.add(new WeakReference<int[]>(a));
             System.out.println("残りメモリ = " + Runtime.getRuntime().freeMemory() + " 配列list = " + list.size());
 
-            for (int i = list.size() - 1; i >= 0; i--) {
-                if (list.get(i).get() == null) {
-                    list.remove(i);
-                }
-            }
+            list.removeIf(temp -> temp.get() == null);
         }
     }
 }
