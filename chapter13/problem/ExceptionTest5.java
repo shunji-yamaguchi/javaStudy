@@ -40,7 +40,8 @@ public class ExceptionTest5 {
             method3(0);
         } catch (Exception e) {
             System.out.println("例外:" + e);
-            e.printStackTrace();
+            //e.printStackTrace(); // 別解
+            System.out.println("スローポイント：" + e.getStackTrace()[0]);
         }
     }
 
@@ -53,6 +54,6 @@ public class ExceptionTest5 {
     }
 
     static void method3(int x) throws Exception {
-        //int temp = 10 / x;
+        int temp = 10 / x;
     }
 }
