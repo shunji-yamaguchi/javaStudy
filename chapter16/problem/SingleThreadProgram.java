@@ -34,41 +34,33 @@ package chapter16.problem;
  * @author shunji.yamaguchi
  *
  */
-public class SingleThreadProgram implements Runnable {
-    static Job[] jobs;
-    int jobNumber;
+public class SingleThreadProgram {
+    Job[] jobs;
 
-    public SingleThreadProgram(int jobNumber) {
-        if (jobs.length < jobNumber || jobNumber < 0) {
-            this.jobNumber = -1;
-        } else {
-            this.jobNumber = jobNumber;
-            jobs[jobNumber] = new Job(jobNumber);
-        }
-    }
-
-    @Override
-    public void run() {
-        if (jobNumber != -1) {
-            while (true) {
-                jobs[jobNumber].work();
-            }
-        }
-    }
-
-    public static void newJobs(int jobcount) {
+    public SingleThreadProgram(int jobcount) {
         jobs = new Job[jobcount];
+        for (int i = 0; i < jobcount; i++) {
+            jobs[i] = new Job(i);
+        }
     }
 
-    public static void workAllJobs() {
+    public void workAllJobs() {
         for (int i = 0; i < jobs.length; i++) {
-            new Thread(new SingleThreadProgram(i)).start();
+            Job job = jobs[i];
+            new Thread() {
+                @Override
+                public void run() {
+                    while (true) {
+                        job.work();
+                    }
+                }
+            }.start();
         }
     }
 
     public static void main(String[] args) {
-        newJobs(10);
-        workAllJobs();
+        SingleThreadProgram self = new SingleThreadProgram(10);
+        self.workAllJobs();
     }
 }
 
