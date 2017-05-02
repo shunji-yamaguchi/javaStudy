@@ -34,40 +34,50 @@ package chapter16.problem;
  * @author shunji.yamaguchi
  *
  */
-public class SingleThreadProgram {
-    Job[] jobs;
+public class SingleThreadProgram implements Runnable {
+    static Job[] jobs;
+    int jobNumber;
 
-    public SingleThreadProgram(int jobcount) {
-        jobs = new Job[jobcount];
-        for (int i = 0; i < jobcount; i++) {
-            jobs[i] = new Job(i);
+    public SingleThreadProgram(int jobNumber) {
+        if (jobs.length < jobNumber || jobNumber < 0) {
+            this.jobNumber = -1;
+        } else {
+            this.jobNumber = jobNumber;
+            jobs[jobNumber] = new Job(jobNumber);
         }
     }
 
-    public void workAllJobs() {
+    @Override
+    public void run() {
+        if (jobNumber != -1) {
+            while (true) {
+                jobs[jobNumber].work();
+            }
+        }
+    }
+
+    public static void newJobs(int jobcount) {
+        jobs = new Job[jobcount];
+    }
+
+    public static void workAllJobs() {
         for (int i = 0; i < jobs.length; i++) {
-            jobs[i].start();
+            new Thread(new SingleThreadProgram(i)).start();
         }
     }
 
     public static void main(String[] args) {
-        SingleThreadProgram self = new SingleThreadProgram(10);
-        self.workAllJobs();
+        newJobs(10);
+        workAllJobs();
     }
 }
 
 // テスト用
-class Job extends Thread {
+class Job {
     int num;
 
     Job(int num) {
         this.num = num;
-    }
-
-    public void run() {
-        while (true) {
-            work();
-        }
     }
 
     void work() {
