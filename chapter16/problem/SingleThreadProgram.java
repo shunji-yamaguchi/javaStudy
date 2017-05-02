@@ -47,14 +47,14 @@ public class SingleThreadProgram {
     public void workAllJobs() {
         for (int i = 0; i < jobs.length; i++) {
             Job job = jobs[i];
-            new Thread() {
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (true) {
                         job.work();
                     }
                 }
-            }.start();
+            }).start();
         }
     }
 
