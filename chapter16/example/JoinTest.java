@@ -19,6 +19,7 @@ public class JoinTest extends Thread {
         System.out.println("run：スレッド開始");
         try {
             Thread.sleep(5000);
+            //TimeUnit.SECONDS.sleep(5); // 5秒スリープ別解
         } catch (InterruptedException e) {
             System.out.println(e);
         }

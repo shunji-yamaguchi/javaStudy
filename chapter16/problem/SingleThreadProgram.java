@@ -45,8 +45,7 @@ public class SingleThreadProgram {
     }
 
     public void workAllJobs() {
-        for (int i = 0; i < jobs.length; i++) {
-            Job job = jobs[i];
+        for (Job job : jobs) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
