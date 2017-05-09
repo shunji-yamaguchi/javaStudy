@@ -63,10 +63,6 @@ public class FileDump1 {
         if (n < 0) {
             n = 256 + n;
         }
-        if (n < 16) {
-            return "0" + Integer.toHexString(n).toUpperCase();
-        } else {
-            return Integer.toHexString(n).toUpperCase();
-        }
+        return String.format("%02X", n);
     }
 }

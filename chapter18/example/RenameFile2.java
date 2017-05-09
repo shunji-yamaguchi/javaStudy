@@ -9,18 +9,18 @@ public class RenameFile2 {
             System.out.println("例：java chapter18/example/RenameFile2 ../src/chapter18/example/output.txt ../src/chapter18/example/outputRe.txt");
             System.exit(0);
         }
-        String oldfilename = args[0];
-        String newfilename = args[1];
-        File oldfile = new File(oldfilename);
-        File newfile = new File(newfilename);
-        if (!oldfile.exists()) {
-            System.out.println(oldfilename + "が見つかりません。");
-        } else if (newfile.exists()) {
-            System.out.println(newfilename + "はすでに存在します。");
-        } else if (oldfile.renameTo(newfile)) {
-            System.out.println(oldfilename + "を" + newfilename + "に変更しました。");
+        String oldFilename = args[0];
+        String newFilename = args[1];
+        File oldFile = new File(oldFilename);
+        File newFile = new File(newFilename);
+        if (!oldFile.exists()) {
+            System.out.println(oldFilename + "が見つかりません。");
+        } else if (newFile.exists()) {
+            System.out.println(newFilename + "はすでに存在します。");
+        } else if (oldFile.renameTo(newFile)) {
+            System.out.println(oldFilename + "を" + newFilename + "に変更しました。");
         } else {
-            System.out.println(oldfilename + "を" + newfilename + "に変更できませんでした。");
+            System.out.println(oldFilename + "を" + newFilename + "に変更できませんでした。");
         }
     }
 }

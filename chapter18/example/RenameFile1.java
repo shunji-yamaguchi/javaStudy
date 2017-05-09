@@ -9,14 +9,14 @@ public class RenameFile1 {
             System.out.println("例：java chapter18/example/RenameFile1 ../src/chapter18/example/output.txt ../src/chapter18/example/outputRe.txt");
             System.exit(0);
         }
-        String oldfilename = args[0];
-        String newfilename = args[1];
-        File oldfile = new File(oldfilename);
-        File newfile = new File(newfilename);
-        if (oldfile.renameTo(newfile)) {
-            System.out.println(oldfilename + "を" + newfilename + "に変更しました。");
+        String oldFilename = args[0];
+        String newFilename = args[1];
+        File oldFile = new File(oldFilename);
+        File newFile = new File(newFilename);
+        if (oldFile.renameTo(newFile)) {
+            System.out.println(oldFilename + "を" + newFilename + "に変更しました。");
         } else {
-            System.out.println(oldfilename + "を" + newfilename + "に変更できませんでした。");
+            System.out.println(oldFilename + "を" + newFilename + "に変更できませんでした。");
         }
     }
 }
