@@ -67,13 +67,16 @@ public class Prime1 {
         }
         String filename = args[0];
 
-        PrintWriter writer;
+        PrintWriter writer = null;
         try {
             writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)));
             writePrime(writer);
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
         }
     }
 

@@ -34,8 +34,9 @@ public class FindFile1 {
 
         String findstring = args[0];
         String filename = args[1];
+        BufferedReader reader = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            reader = new BufferedReader(new FileReader(filename));
             String line;
             int linenum = 1;
             while ((line = reader.readLine()) != null) {
@@ -45,11 +46,18 @@ public class FindFile1 {
                 }
                 linenum++;
             }
-            reader.close();
         } catch (FileNotFoundException e) {
             System.out.println(filename + "が見つかりません。");
         } catch (IOException e) {
             System.out.println(e);
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+            }
         }
     }
 }

@@ -39,13 +39,15 @@ public class FileDump1 {
             System.out.println("");
         } catch (IOException e) {
             System.out.println("" + e);
-        }
-        try {
+        } finally {
             if (in != null) {
-                in.close();
+                try {
+                    in.close();
+                }
+                catch (IOException e) {
+                    System.out.println("" + e);
+                }
             }
-        } catch (IOException e) {
-            System.out.println("" + e);
         }
     }
 
@@ -57,7 +59,7 @@ public class FileDump1 {
     }
 
     public static String byteToHexString(byte b) {
-        int n = (int)b;
+        int n = (int) b;
         if (n < 0) {
             n = 256 + n;
         }

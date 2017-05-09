@@ -13,17 +13,25 @@ public class ShowFile1 {
             System.exit(0);
         }
         String filename = args[0];
+        BufferedReader reader = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            reader = new BufferedReader(new FileReader(filename));
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
-            reader.close();
         } catch (FileNotFoundException e) {
             System.out.println(filename + "が見つかりません。");
         } catch (IOException e) {
             System.out.println(e);
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+            }
         }
     }
 }
