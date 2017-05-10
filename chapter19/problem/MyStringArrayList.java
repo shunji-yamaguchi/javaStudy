@@ -41,16 +41,14 @@ public class MyStringArrayList {
     }
 
     public void add(String s) {
-        if (ar.length > sz) {
-            ar[sz] = s;
-        } else {
+        if (sz >= ar.length) {
             String[] newAr = new String[ar.length * 2];
             for (int i = 0; i < ar.length; i++) {
                 newAr[i] = ar[i];
             }
-            newAr[ar.length] = s;
             ar = newAr;
         }
+        ar[sz] = s;
         sz++;
     }
 

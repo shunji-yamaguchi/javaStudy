@@ -23,21 +23,21 @@ public class MyStringArrayListTest {
 
     @Test
     public void 生成後のarの実際の長さはINITIAL_CAPACITY() throws Exception {
-        String[] ar = (String[])getPrivateField(msa, "ar");
+        String[] ar = getAr(msa);
         int initialCapacity = (Integer)getPrivateField(msa, "INITIAL_CAPACITY");
         assertThat(ar.length, is(initialCapacity));
     }
 
     @Test
     public void arが一杯になると長さが2倍になる() throws Exception {
-        String[] ar = (String[])getPrivateField(msa, "ar");
+        String[] ar = getAr(msa);
         int size = ar.length;
 
         for (int i = 0; i < size + 1; i++) {
             msa.add(String.valueOf(i));
         }
 
-        ar = (String[])getPrivateField(msa, "ar");
+        ar = getAr(msa);
         assertThat(ar.length, is(size * 2));
     }
 
@@ -60,30 +60,26 @@ public class MyStringArrayListTest {
         }
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void 負の数でgetするとIndexOutOfBoundsExceptionを投げる() {
-        try {
-            msa.get(-1);
-            fail();
-        } catch (IndexOutOfBoundsException e) {
-        }
+        msa.get(-1);
     }
 
-    @Test
-    public void 追加要素数以上でgetしようとするとIndexOutOfBoundsExceptionを投げる() {
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void 追加要素数以上でgetするとIndexOutOfBoundsExceptionを投げる() {
         int num = 10;
         for (int i = 0; i < num; i++) {
             msa.add(String.valueOf(i));
         }
-        try {
-            msa.get(num);
-            fail();
-        } catch (IndexOutOfBoundsException e) {
-        }
+        msa.get(num);
+    }
+
+    public static String[] getAr(Object target) throws Exception {
+        return (String[])getPrivateField(target, "ar");
     }
 
     // privateなフィールドを取得
-    public static Object getPrivateField(Object target, String field) throws Exception{
+    public static Object getPrivateField(Object target, String field) throws Exception {
         Class<? extends Object> c = target.getClass();
         Field fld = c.getDeclaredField(field);
         fld.setAccessible(true);
