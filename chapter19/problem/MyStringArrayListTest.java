@@ -74,12 +74,12 @@ public class MyStringArrayListTest {
         msa.get(num);
     }
 
-    public static String[] getAr(Object target) throws Exception {
+    private static String[] getAr(Object target) throws Exception {
         return (String[])getPrivateField(target, "ar");
     }
 
     // privateなフィールドを取得
-    public static Object getPrivateField(Object target, String field) throws Exception {
+    private static Object getPrivateField(Object target, String field) throws Exception {
         Class<? extends Object> c = target.getClass();
         Field fld = c.getDeclaredField(field);
         fld.setAccessible(true);
