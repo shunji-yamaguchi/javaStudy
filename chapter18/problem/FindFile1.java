@@ -38,13 +38,11 @@ public class FindFile1 {
         try {
             reader = new BufferedReader(new FileReader(filename));
             String line;
-            int linenum = 1;
-            while ((line = reader.readLine()) != null) {
+            for (int lineNum = 1; (line = reader.readLine()) != null; lineNum++) {
                 int n = line.indexOf(findstring);
                 if (n >= 0) {
-                    System.out.println(linenum + ":" + line);
+                    System.out.println(lineNum + ":" + line);
                 }
-                linenum++;
             }
         } catch (FileNotFoundException e) {
             System.out.println(filename + "が見つかりません。");
