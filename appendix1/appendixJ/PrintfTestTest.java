@@ -12,7 +12,7 @@ public class PrintfTestTest {
     @Test
     public void mainの出力テスト() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
+        PrintfTest.setPrintStream(new PrintStream(out));
         PrintfTest.main(null);
         assertThat(out.toString(), is(
                 "x = 030071, y = 0103, z = 037777776206（8進数表示）\n"
