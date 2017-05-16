@@ -1,4 +1,4 @@
-package junitIssues.issues01;
+package junitissues.issues01;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
