@@ -1,7 +1,4 @@
-package junitIssues.Issues01;
-
-import java.util.ArrayList;
-import java.util.List;
+package junitIssues.issues01;
 
 /**
  * 【状態を持たないメソッドのテスト】
@@ -13,20 +10,20 @@ import java.util.List;
  */
 public class StringUtils {
     public static String toSnakeCase(String camel) {
-        List<Integer> offsets = new ArrayList<Integer>();
-        int count = 0;
-        for (int i = 1; i < camel.length(); i++) {
-            if (Character.isUpperCase(camel.charAt(i))) {
-                offsets.add(i + count);
-                count++;
+        StringBuilder snake = new StringBuilder(camel.length() + 16); // camel.length() + 16：camelを引数に生成した場合のcapacity
+
+        for (int i = 0; i < camel.length(); i++) {
+            char nowChar = camel.charAt(i);
+            if (Character.isUpperCase(nowChar)) {
+                if (i != 0) {
+                    snake.append("_");
+                }
+                snake.append(Character.toLowerCase(nowChar));
+            } else {
+                snake.append(nowChar);
             }
         }
 
-        StringBuilder sb = new StringBuilder(camel.toLowerCase());
-        for (int offset : offsets) {
-            sb.insert(offset, "_");
-        }
-
-        return sb.toString();
+        return snake.toString();
     }
 }
