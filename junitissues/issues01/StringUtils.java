@@ -10,7 +10,8 @@ package junitissues.issues01;
  */
 public class StringUtils {
     public static String toSnakeCase(String camel) {
-        StringBuilder snake = new StringBuilder(camel.length() + 3);
+        int requiredUnderscoreCountPrediction = 3;
+        StringBuilder snake = new StringBuilder(camel.length() + requiredUnderscoreCountPrediction);
 
         for (int i = 0; i < camel.length(); i++) {
             char nowChar = camel.charAt(i);
