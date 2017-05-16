@@ -10,9 +10,18 @@ package junitissues.issues01;
  */
 public class StringUtils {
     public static String toSnakeCase(String camel) {
-        int requiredUnderscoreCountPrediction = 3;
-        StringBuilder snake = new StringBuilder(camel.length() + requiredUnderscoreCountPrediction);
+        int upperCaseCount = 0;
+        for (int i = 0; i < camel.length(); i++) {
+            if (Character.isUpperCase(camel.charAt(i))) {
+                upperCaseCount++;
+            }
+        }
 
+        if (upperCaseCount == 0) {
+            return camel;
+        }
+
+        StringBuilder snake = new StringBuilder(camel.length() + upperCaseCount);
         for (int i = 0; i < camel.length(); i++) {
             char nowChar = camel.charAt(i);
             if (Character.isUpperCase(nowChar)) {
