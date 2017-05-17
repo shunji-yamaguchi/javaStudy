@@ -20,50 +20,50 @@ import org.junit.runner.RunWith;
 @RunWith(Enclosed.class)
 public class ItemStockTest {
     public static class 初期状態からはじめるテスト {
-        private ItemStock is;
+        private ItemStock itemStock;
 
         @Before
         public void インスタンスを生成する() {
-            is = new ItemStock();
+            itemStock = new ItemStock();
         }
 
         @Test
         public void getNumで0を取得すること() {
-            assertThat(is.getNum(new Item("item1",  100)), is(0));
+            assertThat(itemStock.getNum(new Item("item1",  100)), is(0));
         }
 
         @Test
         public void addでItemを追加するとgetNumで1を取得すること() {
-            is.add(new Item("item1",  100));
-            assertThat(is.getNum(new Item("item1",  100)), is(1));
+            itemStock.add(new Item("item1",  100));
+            assertThat(itemStock.getNum(new Item("item1",  100)), is(1));
         }
     }
 
     public static class Itemが1つ追加されている状態ではじめるテスト {
-        private ItemStock is;
+        private ItemStock itemStock;
 
         @Before
         public void インスタンスを生成しItemを1つ追加する() {
-            is = new ItemStock();
-            is.add(new Item("item1", 100));
+            itemStock = new ItemStock();
+            itemStock.add(new Item("item1", 100));
         }
 
         @Test
         public void getNumで1を取得すること() {
-            assertThat(is.getNum(new Item("item1",  100)), is(1));
+            assertThat(itemStock.getNum(new Item("item1",  100)), is(1));
         }
 
         @Test
         public void addで同じItemオブジェクトを追加するとgetNumで2を取得すること() {
-            is.add(new Item("item1", 100));
-            assertThat(is.getNum(new Item("item1",  100)), is(2));
+            itemStock.add(new Item("item1", 100));
+            assertThat(itemStock.getNum(new Item("item1",  100)), is(2));
         }
 
         @Test
         public void addで異なるItemオブジェクトを追加するとそれぞれのItemについてgetNumで1を取得すること() {
-            is.add(new Item("item2", 200));
-            assertThat(is.getNum(new Item("item1",  100)), is(1));
-            assertThat(is.getNum(new Item("item2",  200)), is(1));
+            itemStock.add(new Item("item2", 200));
+            assertThat(itemStock.getNum(new Item("item1",  100)), is(1));
+            assertThat(itemStock.getNum(new Item("item2",  200)), is(1));
         }
     }
 }
