@@ -3,8 +3,6 @@ package junitissues.issues06;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Field;
-
 import org.junit.Test;
 
 /**
@@ -19,29 +17,29 @@ import org.junit.Test;
  */
 public class BackgroundTaskTest {
     @Test
-    public void invokeメソッドによりRunnableオブジェクトのrunメソッドが別スレッドで実行されること() throws Exception {
-        Runnable task = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    System.out.println(e);
-                }
-            }
-        };
-        BackgroundTask backgroundTask = new BackgroundTask(task);
-        backgroundTask.invoke();
+    public void invokeメソッドによりRunnableオブジェクトのrunメソッドが別スレッドで実行されること() {
+        Task task = new Task();
+        new BackgroundTask(task).invoke();
 
-        Thread taskThread = (Thread)getPrivateField(backgroundTask, "task");
-        assertThat(taskThread.isAlive(), is(true));
+        try {
+            int sleepTime = 300; // taskのrunが実行される前に、以下の処理が実行されないよう300ms待つ
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+
+        if (task.executionThreadName == null) {
+            fail();
+        }
+        assertThat(task.executionThreadName, is(not(Thread.currentThread().getName())));
     }
 
-    // privateなフィールドを取得
-    private static Object getPrivateField(Object target, String field) throws Exception {
-        Class<? extends Object> c = target.getClass();
-        Field fld = c.getDeclaredField(field);
-        fld.setAccessible(true);
-        return fld.get(target);
+    class Task implements Runnable {
+        String executionThreadName;
+
+        @Override
+        public void run() {
+            executionThreadName = Thread.currentThread().getName();
+        }
     }
 }

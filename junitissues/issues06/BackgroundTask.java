@@ -11,13 +11,13 @@ package junitissues.issues06;
  *
  */
 public class BackgroundTask {
-    private Thread task;
+    private Thread thread;
 
     public BackgroundTask(Runnable task) {
-        this.task = new Thread(task);
+        this.thread = new Thread(task);
     }
 
     public void invoke() {
-        task.start();
+        thread.start();
     }
 }
