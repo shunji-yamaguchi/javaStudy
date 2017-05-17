@@ -21,7 +21,7 @@ public class CalculatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void 第２引数に0を指定してdivideを呼び出すとIllegalArgumentExceptionが発生() {
+    public void 第２引数に0を指定してdivideを呼び出すとIllegalArgumentExceptionが発生すること() {
         calculator.divide(1, 0);
     }
 }
