@@ -1,5 +1,6 @@
 package junitissues.issues02;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -12,8 +13,15 @@ import org.junit.Test;
  *
  */
 public class CalculatorTest {
+    private Calculator calculator;
+
+    @Before
+    public void インスタンス生成() {
+        calculator = new Calculator();
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void 第２引数に0を指定してdivideを呼び出すとIllegalArgumentExceptionが発生() {
-        new Calculator().divide(1, 0);
+        calculator.divide(1, 0);
     }
 }
