@@ -21,18 +21,28 @@ public class BackgroundTaskTest {
         Task task = new Task();
         new BackgroundTask(task).invoke();
 
-        while (task.executionThreadName == null) {
+        synchronized (task) {
+            try {
+                while (task.executionThreadName == null) {
+                    task.wait();
+                }
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
         }
 
         assertThat(task.executionThreadName, is(not(Thread.currentThread().getName())));
     }
 
     class Task implements Runnable {
-        volatile String executionThreadName;
+        String executionThreadName;
 
         @Override
         public void run() {
-            executionThreadName = Thread.currentThread().getName();
+            synchronized (this) {
+                executionThreadName = Thread.currentThread().getName();
+                notify();
+            }
         }
     }
 }
