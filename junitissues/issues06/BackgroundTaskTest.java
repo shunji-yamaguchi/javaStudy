@@ -21,21 +21,14 @@ public class BackgroundTaskTest {
         Task task = new Task();
         new BackgroundTask(task).invoke();
 
-        try {
-            int sleepTime = 300; // taskのrunが実行される前に、以下の処理が実行されないよう300ms待つ
-            Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
-            System.out.println(e);
+        while (task.executionThreadName == null) {
         }
 
-        if (task.executionThreadName == null) {
-            fail();
-        }
         assertThat(task.executionThreadName, is(not(Thread.currentThread().getName())));
     }
 
     class Task implements Runnable {
-        String executionThreadName;
+        volatile String executionThreadName;
 
         @Override
         public void run() {
