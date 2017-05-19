@@ -3,6 +3,8 @@ package junitissues.issues06;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.util.concurrent.CountDownLatch;
+
 import org.junit.Test;
 
 /**
@@ -16,33 +18,23 @@ import org.junit.Test;
  *
  */
 public class BackgroundTaskTest {
+    private static final int COUNT_NUM = 1;
+    private static CountDownLatch countDownLatch = new CountDownLatch(COUNT_NUM);
+    private static String taskExecutionThreadName;
+
     @Test
     public void invokeメソッドによりRunnableオブジェクトのrunメソッドが別スレッドで実行されること() {
-        Task task = new Task();
+        Runnable task = () -> {
+            taskExecutionThreadName = Thread.currentThread().getName();
+            countDownLatch.countDown();
+        };
         new BackgroundTask(task).invoke();
 
-        synchronized (task) {
-            try {
-                while (task.executionThreadName == null) {
-                    task.wait();
-                }
-            } catch (InterruptedException e) {
-                System.out.println(e);
-            }
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            System.out.println(e);
         }
-
-        assertThat(task.executionThreadName, is(not(Thread.currentThread().getName())));
-    }
-
-    class Task implements Runnable {
-        String executionThreadName;
-
-        @Override
-        public void run() {
-            synchronized (this) {
-                executionThreadName = Thread.currentThread().getName();
-                notify();
-            }
-        }
+        assertThat(taskExecutionThreadName, is(not(Thread.currentThread().getName())));
     }
 }
