@@ -18,14 +18,13 @@ import org.junit.Test;
  *
  */
 public class BackgroundTaskTest {
-    private static final int COUNT_NUM = 1;
-    private static CountDownLatch countDownLatch = new CountDownLatch(COUNT_NUM);
-    private static String taskExecutionThreadName;
-
     @Test
     public void invokeメソッドによりRunnableオブジェクトのrunメソッドが別スレッドで実行されること() {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        StringBuilder taskExecutionThreadName = new StringBuilder();
+
         Runnable task = () -> {
-            taskExecutionThreadName = Thread.currentThread().getName();
+            taskExecutionThreadName.append(Thread.currentThread().getName());
             countDownLatch.countDown();
         };
         new BackgroundTask(task).invoke();
@@ -35,6 +34,6 @@ public class BackgroundTaskTest {
         } catch (InterruptedException e) {
             System.out.println(e);
         }
-        assertThat(taskExecutionThreadName, is(not(Thread.currentThread().getName())));
+        assertThat(taskExecutionThreadName.toString(), is(not(Thread.currentThread().getName())));
     }
 }

@@ -1,5 +1,8 @@
 package junitissues.issues06;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * 【マルチスレッドのテスト 】
  * 処理をバックグラウンドのスレッドで非同期に実行したい。
@@ -11,13 +14,15 @@ package junitissues.issues06;
  *
  */
 public class BackgroundTask {
-    private Thread thread;
+    private static ExecutorService executor = Executors.newCachedThreadPool();
+
+    public Runnable task;
 
     public BackgroundTask(Runnable task) {
-        this.thread = new Thread(task);
+        this.task = task;
     }
 
     public void invoke() {
-        thread.start();
+        executor.execute(task);
     }
 }
