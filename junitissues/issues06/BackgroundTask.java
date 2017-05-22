@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 public class BackgroundTask {
     private static ExecutorService executor = Executors.newCachedThreadPool();
 
-    public Runnable task;
+    private Runnable task;
 
     public BackgroundTask(Runnable task) {
         this.task = task;

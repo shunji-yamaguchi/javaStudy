@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.Test;
 
@@ -21,10 +22,11 @@ public class BackgroundTaskTest {
     @Test
     public void invokeメソッドによりRunnableオブジェクトのrunメソッドが別スレッドで実行されること() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        StringBuilder taskExecutionThreadName = new StringBuilder();
+        // 別スレッドのスレッド名を取得するための変数、ラムダ式内は実質的final変数かパラメータ変数のみアクセス可能なためAtomicReferenceを使用する
+        AtomicReference<String> taskExecutionThreadName = new AtomicReference<String>();
 
         Runnable task = () -> {
-            taskExecutionThreadName.append(Thread.currentThread().getName());
+            taskExecutionThreadName.set(Thread.currentThread().getName());
             countDownLatch.countDown();
         };
         new BackgroundTask(task).invoke();
@@ -34,6 +36,6 @@ public class BackgroundTaskTest {
         } catch (InterruptedException e) {
             System.out.println(e);
         }
-        assertThat(taskExecutionThreadName.toString(), is(not(Thread.currentThread().getName())));
+        assertThat(taskExecutionThreadName.get(), is(not(Thread.currentThread().getName())));
     }
 }
