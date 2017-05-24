@@ -17,8 +17,8 @@ public class WriteFileN {
             System.exit(0);
         }
         String filename = args[0];
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
-                PrintWriter writer = new PrintWriter(Files.newBufferedWriter(Paths.get(filename), Charset.forName("UTF-8"), StandardOpenOption.CREATE_NEW));) {
+        try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(Paths.get(filename), Charset.forName("UTF-8"), StandardOpenOption.CREATE_NEW));) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
             String line;
             while ((line = reader.readLine()) != null) {
                 writer.println(line);
